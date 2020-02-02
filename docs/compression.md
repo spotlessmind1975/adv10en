@@ -244,13 +244,13 @@ You must pass:
 The commented routine follows, where the "in one line" techniques have been abandoned in favor of better readability:
 
 <pre><code>50 REM *************************************************************************
-51 REM *** DECOMPRESSORE TESTI (BASIC V2) by m.spedaletti (asimov@mclink.it)
+51 REM *** NIBBLE DECOMPRESSOR (BASIC V2) by m.spedaletti (asimov@mclink.it)
 52 REM *************************************************************************
 53 REM *** UTILIZZO:
-54 REM ***   v$ = vocabolario (fino a 13 simboli)
-55 REM ***   e$ = sequenza di byte da decodificare
-56 REM ***   f  = lunghezza della sequenza di byte da decodificare
-57 REM ***   z  = prima posizione da cui iniziare la decodifica
+54 REM ***   v$ = dictionary (16 symbols, used only first 13)
+55 REM ***   e$ = byte sequence to decode
+56 REM ***   f  = length of sequence to decode
+57 REM ***   z  = first position to decode
 58 REM ****************************************************************************
 59 REM
 60 REM ESEMPIO (tratto da "adv10en.bas")
@@ -260,31 +260,31 @@ The commented routine follows, where the "in one line" techniques have been aban
 64 z=1
 65 GOSUB 100
 66 END
-100 REM DECOMPRESSORE
-110 REM Prendi l'z-esimo carattere da decodificare
+100 REM NIBBLE DECOMPRESSOR
+110 REM Take z-nth character to decode
 120 w$=mid$(e$,z,1)+e$
-130 REM Convertilo in un byte
+130 REM Convert it into a byte
 140 y=asc(w$)
-150 REM Estrai i due nibble che lo compongono
+150 REM Extract two nibbles
 160 n0=yand15:n1=(y/16)and15
-170 REM Il primo o il secondo nibble rappresentano uno spazio?
+170 REM Are they a space?
 180 s0=(n0=15):s1=(n1=15)
-190 REM Il primo o il secondo nibble rappresentano una sequenza di escape?
+190 REM Are they an escape sequence?
 200 v0=(n0=14):v1=(n1=14)
-210 REM Il primo o il secondo nibble rappresentano una lettera?
+210 REM Are they a letter?
 220 l0=(n0<14):l1=(n1<14)
-230 REM Stampa il primo e il secondo carattere, in base agli stati di cui sopra
-240 if v0 then print mid$(e$,z+1,1); REM primo carattere = escape
-250 if s0 then print " "; REM primo carattere = spazio
-260 if l0 then print mid$(v$,n0,1); REM primo carattere = lettera frequente
-270 if v1 then print mid$(e$,z+(v0=0)+2,1); REM secondo carattere = escape
-280 if s1 then print " "; REM secondo carattere = spazio
-290 if l1 then print mid$(v$,n1,1); REM secondo carattere = lettera frequente
-300 REM Andiamo avanti ad analizzare la sequenza di byte. Teniamo conto del 
-310 REM fatto che a seconda delle sequenze di escape, dovremo saltare in avanti
-320 REM fino a due byte in piu'.
+230 REM Print first and second nibble
+240 if v0 then print mid$(e$,z+1,1); REM first = escape
+250 if s0 then print " "; REM first = space
+260 if l0 then print mid$(v$,n0,1); REM first = letter
+270 if v1 then print mid$(e$,z+(v0=0)+2,1); REM second = escape
+280 if s1 then print " "; REM second = space
+290 if l1 then print mid$(v$,n1,1); REM second = letter
+300 REM Go on on sequence, taking care that each escape
+310 REM sequence means to go on by one additional byte.
+320 REM So we could go ahead from 1 to 3 bytes.
 330 z=z-v0-v1+1
-340 REM La sequenza e'' terminata?
+340 REM Is sequence decoding finished?
 350 ifz<=fthen100
 360 return
 </code>
