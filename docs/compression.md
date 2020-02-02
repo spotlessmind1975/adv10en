@@ -1,4 +1,4 @@
-﻿# TEXT COMPRESSION
+﻿# NIBBLE TEXT COMPRESSION
 
 One of the most "bulky" elements of the programs written in BASIC V2 are certainly the texts: error messages, descriptions, labels, prompts ... everything must be strongly reduced in order to save precious space for the rest of the program. This applies to both more and less serious applications, such as games, and it becomes critical in those games where texts are essential. 
 
