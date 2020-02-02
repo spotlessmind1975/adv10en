@@ -6,7 +6,7 @@ I am referring, of course, to the so-called "text adventures" and it would be fa
 
 The best way to solve this problem in general is to take into consideration the low variability of the letters and, therefore, to use a nibble representation (4 bit) instead of a byte (8 bit).
 
-![A nibble is 4 bits, or half of a byte. One hexadecimal digit is one nibble in size. Source: Wikipedia.](https://commons.wikimedia.org/wiki/File:Nibbles_in_a_byte.PNG)
+![A nibble is 4 bits, or half of a byte. One hexadecimal digit is one nibble in size. Source: Wikipedia.](nibble.png)
 
 This approach would ideally reduce the occupation of space to exactly half of what is needed today. Obviously, we can represent only 16 symbols (0...15), which are insufficient to completely represent all the letters of the alphabet, and one punctuation mark (28 letters: a-z, the full stop "." and the space). 
 
