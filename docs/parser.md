@@ -59,6 +59,6 @@ In order to distinguish each command, it will be sufficient to perform a samplin
 
 In the specific case, it was chosen to sample the character in position 1, 6 and 7. Based on this analysis, two status variables can be populated: the verb (**v**) and the object (**o**). These two numbers can therefore be manipulated more quickly and concisely, and they can be used to change the value of status variable to proceed with the game as detailed in the [internal game state](game-state.md).
 
-Sia che il parser capisca (o intuisca) ciò che viene richiesto, sia che non lo capisca, sarà stampato un opportuno messaggio tra quelli in dotazione (di colore verde se compreso, rosso se non lo è). Anche in questo caso, come nel caso delle descrizioni e degli stati, la scelta del messaggio è svolta in base a determinate condizioni. 
+Whether the parser understands or not the player's inpout, an appropriate message will be printed among those supplied (green if ok, red if is is an error). Also in this case, as in the case of descriptions and states, the choice of the message is made according to certain conditions (see [internal game state](game-state.md) for more information).
 
 PS. to have a better user experience, a sound note will be emitted at each interaction: a sort of "beep", which serves to indicate that the system is ready to accept the next command.
