@@ -10,4 +10,4 @@ For those wishing to deepen the details of its implementation (**ATTENTION: SPOI
  *  [the compression method](/docs/compression.md)
 
 For those who are stuck, find suggestions [on this page](docs/suggestions.md).
-Here you will find the [complete solution](docs/complete-solution.md).
+Here you will find the [complete solution](docs/solution.md).
