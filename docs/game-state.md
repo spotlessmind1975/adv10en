@@ -40,29 +40,27 @@ Although in the current game all connections are bidirectional, this is not mand
 
 ## THE STATUS VARIABLES (a,b,g,h)
 
-We present a different description according to the room in which the player is (see above), and the current status of the other status variables (**a,b,g,h**): this is for example the case of room no. 3, when the rope has been used.
-
-To ensure the best possible description of the situation, the state of the game is represented by two related descriptions: 
+We present a different description according to the room in which the player is (see above), and the current status of the other status variables (**a,b,g,h**). To ensure the best possible description of the situation, the state of the game is represented by two related descriptions: 
 * **room description**: the situation of the room and describes it in a generic way (driven by the variable **x**);
-* **status description**: it represents any additional elements that can change according to the state of the variables (driven by the variable **q**, that is a combination of status variables)
+* **status description**: it represents any additional elements that can change according to the state of the variables (driven by the variable **q**, that is a linear combination of status variables)
 
-Since both descriptions are always present, if there are no additional elements (**q = 0**) this is represented by a standard message (<code>NOTHING MORE</code>).
+Since both descriptions are always present, if there is no status description (**q = 0**) this is represented by a standard message (<code>NOTHING MORE</code>).
 
-In addition to explicit movement constraints, such as those induced by the matrix (see above), there are also constraints that are based on the current state variables (orange coloured background). Those costraints prevent the player from moving to some rooms until certain conditions are met. This happens, for example, in the aisle room, when a locked door block the player's exit.
+## STATUS BASED MOVEMENT CONSTRAINTS 
 
-State changes intersect with the [parser](parser.md). Infact, once the verb (**v**) and noun (**n**) have been decoded, their values are used to vary the state of the aforementioned variables. This variation is subject to feasibility criteria, that is (i.e.) to being  in the right room or having previously taken possession of other objects.
+In addition to explicit movement constraints, such as those induced by the matrix (see above), there are also constraints that are based on the current state variables (orange coloured background).**Those costraints prevent the player from moving to some rooms until certain conditions are met.** This happens, for example, in the aisle room, when a locked door block the player's exit.
+
+State changes intersect with the [parser](parser.md). Infact, once the verb (**v**) and noun (**n**) have been decoded, their values are used to vary the state of the aforementioned variables. This variation is subject to feasibility criteria, that is (i.e.) to being  in the right room or having previously taken possession of other needed objects. Once calculated, the destination room is calculated and the parser will check again the complesive result. If something goes wrong, it will emit an error.
 
 ![Example by using the rope](map_rope.png)
 
-To better understand the mechanism, take the example of the rope object. This object (**o = 1**) is located in room no. 5 (**x = 5**), and it is described on that room when the player enters. 
+To better understand the mechanism, take the example of the rope object. This object (**o = 1**) is located in room no. 5 (**x = 5**), and it is described on that room when the player enters. If the parser understands that the player has requested to take (**v = 5**) just that object, the game will check if this is possible, with this formula: the rope can only be taken only and only if it has not already been taken (**a = 0**) and the player is in the room. nr. 5 (**x = 5**). 
 
-If the parser understand that the player has requested to take (**v = 5**) just that object, the game will check if this is possible: the rope can only be taken only and only if it has not already been taken (**a = 0**) and the player is in the room. nr. 5. 
-
-In a single expression:
+In short:
 
 <pre>a=-(a=1)+((x=5)*(a=0)*(v=5)*(o=1))</pre>
 
-In the absence of one of those conditions, the state does not change at all and, in the absence of changes, the parser will emit an error. By using the current status variables, the program will block the movement by calculating a 0 for the destination room, if conditions are not met.
+In the absence of one of those conditions, **the state does not change at all** and, in the absence of possession condition (**a = 1**) when user asked to take (**v = 5**) the rope (**a = 1**), the parser will emit an error. By using the current status variables, the program will block the movement by calculating a 0 for the destination room, if conditions are not met. Again, the parser will emit an error if next room is zero (**x = 0**) when a verb is a movement (**v < 5**).
 
 ## THE SCORE
 
