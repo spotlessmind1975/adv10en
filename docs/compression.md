@@ -14,7 +14,7 @@ But, if we assigned the letters that are most frequent in that text to these 16 
 
 In order to be able to encode any generic text, we must sacrifice some of the representable values to introduce a way to return (temporarily) to the 8-bit representation, when we need it.
 
-To give an example, I will take the following text from [10lines adv (English edition)](https://github.com/spotlessmind1975/adv10en):
+To give an example, I will take the following text from [10LINES ADV (English edition)](https://github.com/spotlessmind1975/adv10en):
 
 > IN THE MIDDLE OF AN AISLE. YOU SEE TWO ROOMS AT NORTH AND SOUTH. A DOOR IS AT EAST.
 
