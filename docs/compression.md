@@ -30,15 +30,6 @@ This string is exactly 83 characters long and it has 17 different letters. If we
         <td>"E"</td>
         <td>...</td>
     </tr>
-    <tr>
-        <td>7</td>
-        <td>6</td>
-        <td>F</td>
-        <td>2</td>
-        <td>9</td>
-        <td>5</td>
-        <td>...</td>
-    </tr>
 </table>
 
 Now, we suppose to use the following correspondence table. I built this table by ordering the letters from the most frequent to the least one in that text:
