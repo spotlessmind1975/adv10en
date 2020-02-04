@@ -207,9 +207,283 @@ I.e.:
     </tr>
 </table>
 
-Take note of the fact that the nibble with value 0 is excluded, in order to avoid that a double sequence of this value could emit an invalid output byte (equal to 0). In general, some sequences may not be valid on the target system, and therefore they must be replaced with a double "EE" nibble, followed by the two characters "as is". One such case is the quote character (") on COMMODORE 64, that is used to enclose a string.
+Unfortunately, depending on the destination system where the byte sequence thus obtained will be represented, some of these combinations may not be valid, for one or more of these reasons (they are sorted from the most serious to the lightest one, and the level between brackets is about "severity"):
 
-In order to evaluate how much saving we could reach in applying this compression schema, we must verify the relationship between the space occupied by all the elements needed to reconstruct the text with respect to the length of the original text. Obviously, being dependent on the content of the text, **it is not possible to give a deterministic measure of the space reduction ratio**. We can, however, present a (pessimistic) estimate model that takes into account the following conditions:
+* **the correct listing of the program could be prevented**, because the characters would appear several times or would not appear at all, when you give the <code>LIST</code> command, or would generate a syntax error (LEVEL 4);
+* **you could prevent typing the listing using the integrated editor**, because some characters would not be typeable (LEVEL 3);
+* **"re-editing" could be prevented**, because the representation could change with a subsequent modification (LEVEL 2);
+* **ambiguous characters could be introduced**, for which there are several corresponding codes (LEVEL 1).
+
+With this in mind, I conducted an empirical study on the characters of the COMMODORE 64, which led me to draw up an algorithm ranking according to the aforementioned level of severity in their side effects, if they were adopted:
+
+<table>
+    <tr>
+        <th>LEVEL</th>
+        <th>CHARS (dec./hex.)</th>
+    </tr>
+    <tr>
+        <td>
+        LEVEL 4
+        </td>
+        <td>
+            <table>
+                <tr>
+                    <td>
+                        0
+                    </td>
+                    <td>
+                        00
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        10
+                    </td>
+                    <td>
+                        0A
+                    </td>
+                    <td>
+                        <code>LINE FEED</code>.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        13
+                    </td>
+                    <td>
+                        0D
+                    </td>
+                    <td>
+                        <code>ENTER</code>.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        20
+                    </td>
+                    <td>
+                        14
+                    </td>
+                    <td>
+                    It is the character used to represent the delete of one character. 
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        34
+                    </td>
+                    <td>
+                        22
+                    </td>
+                    <td>
+                        Quotes are not allowed.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        141
+                    </td>
+                    <td>
+                        8D
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td>
+        LEVEL 3
+        </td>
+        <td>
+            <table>
+                <tr>
+                    <td>
+                        130
+                    </td>
+                    <td>
+                        81
+                    </td>
+                    <td rowspan="5">
+                        These are characters for which there is no sequence on the C=64 keyboard capable of introducing them.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        131
+                    </td>
+                    <td>
+                        82
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        132
+                    </td>
+                    <td>
+                        83
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        143
+                    </td>
+                    <td>
+                        8f
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        222
+                    </td>
+                    <td>
+                        de
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td>
+        LEVEL 2
+        </td>
+        <td>
+            <table>
+                <tr>
+                    <td>
+                        96
+                    </td>
+                    <td>
+                        60
+                    </td>
+                    <td rowspan="3">
+                    Automatic conversion.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        ...
+                    </td>
+                    <td>
+                        ...
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        127
+                    </td>
+                    <td>
+                        7f
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        224
+                    </td>
+                    <td>
+                        e0
+                    </td>
+                    <td rowspan="3">
+                    Sono caratteri che, se modificati,
+                    sono riconvertiti nei loro codici
+                    duplicati.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        ...
+                    </td>
+                    <td>
+                        ...
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        253
+                    </td>
+                    <td>
+                        7f
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td>
+        LEVEL 1
+        </td>
+        <td><table>
+                <tr>
+                    <td>
+                        192
+                    </td>
+                    <td>
+                        c0
+                    </td>
+                    <td rowspan="3">
+                    Automatic conversion.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        ...
+                    </td>
+                    <td>
+                        ...
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        223
+                    </td>
+                    <td>
+                        df
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        160
+                    </td>
+                    <td>
+                        a0
+                    </td>
+                    <td rowspan="3">
+                    Automatic conversion.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        ...
+                    </td>
+                    <td>
+                        ...
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        190
+                    </td>
+                    <td>
+                        254
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+Although the double escape is always available (replacing the offending byte with a double nibble "EE" followed by the two characters "as is") this strategy is not always successful or necessary. For example, if you limit yourself to a compressor of LEVEL 4 (the lowest level of compatibility), it would be enough to escape only those few characters.
+
+On the other hand, the order in which the letters are put in the dictionary can also make a difference: in fact, these two dictionary sequences
+
+![Lettere con una permutazione](letters.png)
+
+they produce **exactly** the same level of compression: however, they organize the nibbles, and therefore the bytes, in a different way. It is thus possible to imagine finding **a different order** of these letters, in order to minimize the use of escape sequences.
+
+Finally, in order to evaluate how much saving we could reach in applying this compression schema, we must verify the relationship between the space occupied by all the elements needed to reconstruct the text with respect to the length of the original text. Obviously, being dependent on the content of the text, **it is not possible to give a deterministic measure of the space reduction ratio**. We can, however, present a (pessimistic) estimate model that takes into account the following conditions:
 
  - **that 50% of the text** can be encoded by a sequence of 2 nibble (2 bytes to 1 bytes);
  - **that 40% of the text** can be encoded by a sequence of 1 nibble ad an escape sequence (2 bytes to 2 bytes);
