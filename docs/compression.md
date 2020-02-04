@@ -209,10 +209,10 @@ I.e.:
 
 Unfortunately, depending on the destination system where the byte sequence thus obtained will be represented, some of these combinations may not be valid, for one or more of these reasons (they are sorted from the most serious to the lightest one, and the level between brackets is about "severity"):
 
-* **the correct listing of the program could be prevented**, because the characters would appear several times or would not appear at all, when you give the <code>LIST</code> command, or would generate a syntax error (LEVEL 4);
-* **you could prevent typing the listing using the integrated editor**, because some characters would not be typeable (LEVEL 3);
-* **"re-editing" could be prevented**, because the representation could change with a subsequent modification (LEVEL 2);
-* **ambiguous characters could be introduced**, for which there are several corresponding codes (LEVEL 1).
+* **the correct listing of the program could be prevented**, because the characters would appear several times or would not appear at all, when you give the <code>LIST</code> command, or would generate a syntax error (LEVEL 1);
+* **you could prevent typing the listing using the integrated editor**, because some characters would not be typeable (LEVEL 2);
+* **"re-editing" could be prevented**, because the representation could change with a subsequent modification (LEVEL 3);
+* **ambiguous characters could be introduced**, for which there are several corresponding codes (LEVEL 4).
 
 With this in mind, I conducted an empirical study on the characters of the COMMODORE 64, which led me to draw up an algorithm ranking according to the aforementioned level of severity in their side effects, if they were adopted:
 
@@ -223,7 +223,7 @@ With this in mind, I conducted an empirical study on the characters of the COMMO
     </tr>
     <tr>
         <td>
-        LEVEL 4
+        LEVEL 1
         </td>
         <td>
             <table>
@@ -296,7 +296,7 @@ With this in mind, I conducted an empirical study on the characters of the COMMO
     </tr>
     <tr>
         <td>
-        LEVEL 3
+        LEVEL 2
         </td>
         <td>
             <table>
@@ -348,7 +348,7 @@ With this in mind, I conducted an empirical study on the characters of the COMMO
     </tr>
     <tr>
         <td>
-        LEVEL 2
+        LEVEL 3
         </td>
         <td>
             <table>
@@ -413,7 +413,7 @@ With this in mind, I conducted an empirical study on the characters of the COMMO
     </tr>
     <tr>
         <td>
-        LEVEL 1
+        LEVEL 4
         </td>
         <td><table>
                 <tr>
@@ -475,7 +475,7 @@ With this in mind, I conducted an empirical study on the characters of the COMMO
     </tr>
 </table>
 
-Although the double escape is always available (replacing the offending byte with a double nibble "EE" followed by the two characters "as is") this strategy is not always successful or necessary. For example, if you limit yourself to a compressor of LEVEL 4 (the lowest level of compatibility), it would be enough to escape only those few characters.
+Although the double escape is always available (replacing the offending byte with a double nibble "EE" followed by the two characters "as is") this strategy is not always successful or necessary. For example, if you limit yourself to a compressor of LEVEL 1 (the lowest level of compatibility), it would be enough to escape only those few characters.
 
 On the other hand, the order in which the letters are put in the dictionary can also make a difference: in fact, these two dictionary sequences
 
