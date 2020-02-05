@@ -387,9 +387,7 @@ With this in mind, I conducted an empirical study on the characters of the COMMO
                         e0
                     </td>
                     <td rowspan="3">
-                    Sono caratteri che, se modificati,
-                    sono riconvertiti nei loro codici
-                    duplicati.
+                    Automatic conversion.
                     </td>
                 </tr>
                 <tr>
@@ -424,7 +422,7 @@ With this in mind, I conducted an empirical study on the characters of the COMMO
                         c0
                     </td>
                     <td rowspan="3">
-                    Automatic conversion.
+                    Not unique code for same character.
                     </td>
                 </tr>
                 <tr>
@@ -451,7 +449,7 @@ With this in mind, I conducted an empirical study on the characters of the COMMO
                         a0
                     </td>
                     <td rowspan="3">
-                    Automatic conversion.
+                    Not unique code for same character.
                     </td>
                 </tr>
                 <tr>
