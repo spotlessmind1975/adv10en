@@ -254,8 +254,6 @@ it's like:
     </tr>
 </table>
 
-<pre></pre>
-
 Next, we decode the object (if any).
 <table>
     <tr>
@@ -347,7 +345,7 @@ However, if the verb were not moving, the next room will be always the current o
 x*(v>4)-
 x*(v=0)</pre></td>
         <td><pre>it's like:
-[ IF X>4 THEN R=X ]
+[ IF V>4 THEN R=X ]
 [ IF V=0 THEN R=X ]</pre></td>
     </tr>
 </table>
@@ -366,9 +364,8 @@ Whichever room the player will go to, the conditions necessary for moving must b
 [ IF R<>6 AND R<>4 THEN R=R ]</pre></td>
     </tr>
 </table>
-<pre></pre>
 
-Ultimately, if the next room is zero (0), it means that the player must stay where he is; otherwise, it will move accordingly.
+Ultimately, if the next room is zero (0), it means that the player must stay where he/she is; otherwise, it will move accordingly.
 
 <table>
     <tr>
@@ -385,10 +382,10 @@ x*(r=0)</pre></td>
 
 Now we have to calculate the answer. It involves testing a number of possibilities:
 - that the program did not understand what the player meant;
-- that the player wanted to move, but cannot;
-- that the player wanted to do something, but could not do it.
+- that the player wanted to move, but he/she cannot;
+- that the player wanted to do something, but he/she could not do it.
 
-For each of these conditions (**j=1**), there is a specific message. Also for the condition that everything is ok (**j=0**) and the player can move to another room (or stay in the one where he is).
+For each of these conditions (**j=1**), there is a specific message. There is a specific message also for the condition that everything is ok (**j=0**) and the player can move to another room (or stay in the one where he/she is).
 
 <table>
     <tr>
