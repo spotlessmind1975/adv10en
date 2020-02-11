@@ -2,7 +2,7 @@
 
 **10LINES ADV** is an adventure game for [COMMODORE 64](https://it.wikipedia.org/wiki/Commodore_64) home computer. In this game the player assumes the role of a protagonist in an interactive story, driven by exploration and puzzle-solving. This game is designed for a single player, it is text-based and uses a text parser to translate the player's input into commands.
 
-[Click here](https://github.com/spotlessmind1975/adv10en/blob/master/adv10-all-20200202.d64) to download the disk image (D64 format). 
+[Click here](https://github.com/spotlessmind1975/adv10en/blob/master/adv10-all.d64) to download the disk image (D64 format). 
 The image contains both English and [Italian edition](https://github.com/spotlessmind1975/adv10).
 
 ![snapshot](snapshot.png)
