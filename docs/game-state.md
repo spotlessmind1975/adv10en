@@ -28,6 +28,8 @@ The room where the player is located (**x**) is one of the six rooms of the game
 
 The repetition of room "beginning room" for values 0 and 1 is needed to make a different description of the room. The difference is between the first time it is displayed to the player and the next one, and it lies entirely in the starting point of description decoding. This technique allows to add and additional level of compression on descriptions. It is used also in other parts of the game (such as, for example, in the inventory). So, the first time the description of the initial room is displayed, the room number is automatically changed from 0 to 1 (**x = 1**). 
 
+## GAME MAP AND ROOM CONNECTIONS
+
 ![Connections between rooms](directions.png)
 
 The connections between rooms are described by a single matrix of 6 rows by 4 columns, linearized as a string in the variable **m$**. A row of 4 digits represents a room, while each column (6 digits) represents the new value of **x** if the user chooses to move (respectively) **N**orth (first digit), **S**outh (second digit), **W**est (third digit) or **E**ast (fourth digit) on each room.
