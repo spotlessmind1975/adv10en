@@ -109,7 +109,7 @@ Second line of titles (and an empty line more):
 
 From this point on, the program's lines are ordered according to a game logic.
 
-### ROOM DESCRIPTION AND SCORE
+### ROOM DESCRIPTION AND SCORE (LINES 4-5)
 
 This is where the game loop's starts. The player will return to this line (line 4) each time the description of the room is needed. The room description is print using light gray color. 
 
