@@ -473,7 +473,7 @@ If the response was an error (**j=1**) then we move to the point where we ask fo
  
 <pre>on j+1 goto 4,5</pre>
 
-This is the text decompression routine ([see here](/docs/compression.mda-readable-decoder) for a more readable program).
+This is the text decompression routine ([see here](/docs/compression.md#a-readable-decoder) for a more readable program).
 
 <pre>9 w$=mid$(e$,z,1):y=asc(w$):
 n0=yand15:n1=(y/16)and15
