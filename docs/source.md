@@ -445,7 +445,7 @@ chr$(-(j=1)*28-
     </tr>
 </table>
 
-The starting point to write also depends on the message and the [boundary conditions](/docs/game-state.md#introduction). This is the logic that handles the response to be returned when inventory is requested (**v=7**). The algorithm causes the writing to be sent on the screen depending on the "possession" of objects. The entire message is written when the player owns every object.
+The starting point to write also depends on the message and the [boundary conditions](/docs/game-state.md#introduction). This is the logic that handles the response to be returned when inventory is requested (**v=7**). The algorithm causes the writing to be sent on the screen depending on the "possession" of objects. The entire message is written when the player owns every object, while partial message is printed if the player lacks of some objects.
 
 <table>
     <tr>
