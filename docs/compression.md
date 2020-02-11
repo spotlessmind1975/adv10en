@@ -496,7 +496,7 @@ The trend of the graph with the various lengths presents a balance point around 
 
 For example, with a text of 256 characters, a saving of 46 characters is obtained, so reaching a compress ratio of about 86%. With 1 KB of text you get a ratio of 81% and a net saving of 190 characters. In reality, **the savings are greater and that makes the use of this technique very advantageous**, especially if texts can be modified to optimize the content.
 
-In order to make this algorithm reusable, the decoder has been implemented **as a single line of BASIC V2 code** of exactly 251 characters. This routine is located on line 9 of the **adv10en** program and it can be called as subroutine (<code>GOSUB 9</code>), as long as you use <code>RETURN</code> in the following lines.
+In order to make this algorithm reusable, the decoder has been implemented **as a single line of BASIC V2 code** of exactly 247 characters. This routine is located on line 9 of the **adv10en** program and it can be called as subroutine (<code>GOSUB 9</code>), as long as you use <code>RETURN</code> in the following lines.
 
 You must pass:
 - in **v$** the letter's dictionary (a string of 16 characters);
