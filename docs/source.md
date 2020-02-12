@@ -153,7 +153,7 @@ x+
 (x=3)*(g=1)*13)</pre></td>
         <td><pre>it's like:
 [ IF X=0 THEN E$=D$(1) ]
-[ IF X=3 THEN E$=D$(16) ]
+[ IF X=3 AND G=1 THEN E$=D$(16) ]
 [ IF X<>0 THEN E$=D$(X) ]</pre></td>
     </tr>
 </table>
