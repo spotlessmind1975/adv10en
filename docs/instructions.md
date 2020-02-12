@@ -7,6 +7,6 @@ Once the emulator software has been installed, follow the instructions below:
  - click on **File** > **Attach disk image** > **Drive 8**;
  - select <code>adv10-all.d64</code> file ([click here to download](https://github.com/spotlessmind1975/adv10en/blob/master/adv10-all.d64));
  - click on **Attach**;
- - type <code>LOAD "*",8,1</code>;
+ - type <code>LOAD "ADV10EN",8,1</code>;
  - when finished loading, type <code>RUN</code>
 
